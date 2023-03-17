@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-  <%String id =(String) session.getAttribute("id"); %>  
-  <%String[] pelicula =(String []) session.getAttribute("data"); %>
+  <%String id =(String) session.getAttribute("id");   
+  String[] data =(String []) session.getAttribute("data"); 
+  String nroMesas="";
+  %>
     
     
     
@@ -91,7 +93,7 @@
 								<br>
 								<p>&nbsp;</p>
 								<p>&nbsp;</p>
-								    <form id="myform" name="myform" class="horizontal-form" method="post" action="javascript:actas_bscarPrNmroMesa(document.getElementById('myform'));">
+								    <form id="myform" name="myform" class="horizontal-form" method="get" action="svlActas">
 											<div class="col-md-3">
 												INGRESE EL NÚMERO DE ACTA:
 											</div>
@@ -99,21 +101,194 @@
 											<div class="col-md-4">
 												<div class="form-group">
 													<span id="spanNroMesa">
-														<input id="nroMesa" name="nroMesa" type="text" onKeyPress="return validText(this, event, 4)" maxlength="6" class="form-control" value=""/>
+														<input id="nroMesa" name="id" type="text" onKeyPress="return validText(this, event, 4)" maxlength="6" class="form-control" value=""/>
 													</span>
 												</div>
 											</div>
-
+											<div class="col-md-2">
+												<input type="submit" class="btn btn-primary  value ="enviar"/> 
+											</div>
+											<!-- 
 											<div class="col-md-2">
 												<button type="button" 
-												onclick="javascript:actas_bscarPrNmroMesa(document.getElementById('myform'));"
+												onclick="svlActas?id=030027"
 												class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> BUSCAR</button>
-											</div>
+											</div> 
+											 -->
+											<!-- 
+											<div class="col-md-2">
+												<a href="myform.submit()"
+												class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> BUSCAR</a>
+										</div>
+											 -->	
+											
+											
 										
 									</form>
                                 </div>
 								<div id="divDetalle" class="ptop20">
+								
+								<% if (data != null ) { %>
+								
+<div class="contenido-resultados">
+            		<p>&nbsp;</p>
+		<div class="row">
+			<div class="tab-info">
+				<div class="tab-content">
+					<div id="detMesa">
+							<div class="tab-content">
+	<div role="tabpanel" class="tab-pane active" id="presidencial">
+		<div class="tab-info-desc">
+			<div class="row">
+				<div class="col-xs-3 col-md-4">
+					<div class="mesap01">
+											<img src="images/pn.jpg" class="img-responsive">
+										Si requiere la imagen del acta, solicítela a través del procedimiento de acceso a la información pública.
+					</div>
+				</div>
+				<div class="col-xs-9 col-md-8">
+					<div class="row">
+						<div class="col-xs-12">
+							<p class="subtitle1">ACTA ELECTORAL</p>
+							<div id="page-wrap">
+								<table class="table13" cellspacing="0">
+									<thead>
+										<tr>
+											<th>Mesa N°</th>
+											<th>N° Copia</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td><%= data[6] %></td>
+											<td><%= data[7] %></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+						<div class="col-xs-12">
+							<p class="subtitle1">INFORMACIÓN UBIGEO</p>
+							<div id="page-wrap">
+								<table class="table14" cellspacing="0">
+									<tbody>
+										<tr class="titulo_tabla">
+											<td>Departamento</td>
+											<td>Provincia</td>
+											<td>Distrito</td>
+											<td>Local de votación</td>
+											<td>Dirección</td>
+										</tr>
+										<tr>
+											<td><%= data[0] %></td>
+											<td><%= data[1] %></td>
+											<td><%= data[2] %></td>
+											<td><%= data[3] %></td>
+											<td><%= data[4] %></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+						<div class="col-xs-12">
+							<p class="subtitle1">INFORMACIÓN MESA</p>
+							<div id="page-wrap">
+								<table class="table15" cellspacing="0">
+									<tbody>
+										<tr class="titulo_tabla">
+											<td>Electores hábiles</td>
+											<td>Total votantes</td>
+											<td>Estado del acta</td>
+										</tr>
+										<tr>
+											<td><%= data[9] %></td>
+											<td><%= data[10] %></td>
+											<td>ACTA ELECTORAL NORMAL</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div>
+				<div class="col-xs-12 pbot30_acta">
+					<p class="subtitle1">LISTA DE RESOLUCIONES</p>
+											<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> No hay resoluciones para el acta seleccionada
+										<div id="page-wrap">
+						<div class="col-md-12 resolu">
+													</div>
+					</div>
+				<!-- <p class="centro"># : El valor consignado en el acta presenta ilegibilidad.</p> -->
+				</div>
+
+			</div>
+
+			<div>
+				<div class="col-xs-12">
+					<p class="subtitle1">INFORMACIÓN DEL ACTA ELECTORAL</p>
+					<div id="page-wrap" class="cont-tabla1">
+						<table class="table06">
+							<tbody>
+							<tr class="titulo_tabla">
+								<td colspan="2">Organización política</td>
+								<td>Total de Votos</td>
+							</tr>
+																																																							<tr>
+									<td>PERUANOS POR EL KAMBIO</td>
+									<td><img width="40px" height="40px" src="images/simbolo_pkk.jpg"></td>
+									<td><%= data[11] %></td>
+								</tr>
+																																																															<tr>
+									<td>FUERZA POPULAR</td>
+									<td><img width="40px" height="40px" src="images/simbolo_keyko.jpg"></td>
+									<td><%= data[12] %></td>
+								</tr><tr>
+									<td colspan="2">VOTOS EN BLANCO</td>
+									<td><%= data[13] %></td>
+								</tr>
+								<tr>
+									<td colspan="2">VOTOS NULOS</td>
+									<td><%= data[14] %></td>
+								</tr>
+								<tr>
+									<td colspan="2">VOTOS IMPUGNADOS</td>
+									<td><%= data[15] %></td>
+								</tr>
+								<tr>
+									<td colspan="2">TOTAL DE  VOTOS EMITIDOS</td>
+									<td><%= data[10] %></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+							</div>
+
+		</div>
+	</div>
+</div>				
+
+
+		
+
+					</div>
+				</div>
+			</div>
+		</div>
+    	
+</div>
+								
+								
+								<% }  %>
+								
 								</div>
+								
                             </div>
 
                         </div>
@@ -122,11 +297,7 @@
 		    </section>
     </div>
 	
-	<script>
-	function acta(){
-		<a href="svlActas?id=nroMesa">
-		}
-	</script>
+	
 	
            <%@include file="WEB-INF/footer.jsp" %>
 

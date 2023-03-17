@@ -36,7 +36,14 @@ public class svlActas extends HttpServlet {
 		dao.OnpeDAO daoOnpe = new dao.OnpeDAO();
 		
 		String id = request.getParameter("id");
-	
+		Object data = daoOnpe.getGrupoVotacion(id);
+		
+		
+			
+		session.setAttribute("data",data);	
+		
+		
+		
 		
 		
 		response.sendRedirect("actas.jsp");
