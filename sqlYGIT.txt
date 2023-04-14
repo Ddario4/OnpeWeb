@@ -1,0 +1,22 @@
+https://github.com/Ddario4/OnpeWeb.git
+
+
+
+
+PROCEDIMIENTO ALMACENADO 
+
+
+create procedure sp_getResumen_BaldeonArones as 
+select SUM(P1) AS Total_P1,
+  CONCAT(ROUND((SUM(P1)*100.0)/(SUM(P1)+SUM(P2)),2),'%') AS Porcentaje_P1,
+  SUM(P2) AS Total_P2,
+  CONCAT(ROUND((SUM(P2)*100.0)/(SUM(P1)+SUM(P2)),2),'%') AS Porcentaje_P2,
+    COUNT(*) AS Total_Actas,
+   CONCAT(ROUND((COUNT(*)*100.0)/(SELECT COUNT(*) FROM GrupoVotacion),2),'%') AS Porcentaje_Actas,
+    SUM(ElectoresHabiles) AS TotalElectoresHabiles,
+  SUM(TotalVotantes) AS TotalCiudadanosVotaron,
+  ROUND(AVG(TotalVotantes*1.0 / ElectoresHabiles * 100), 2) AS PorcentajeParticipacion,
+    100 - ROUND(AVG(TotalVotantes * 100.0 / ElectoresHabiles), 2) AS PorcentajeAusentismo
+
+FROM GrupoVotacion
+go
