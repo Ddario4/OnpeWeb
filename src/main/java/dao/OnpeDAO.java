@@ -50,7 +50,7 @@ public class OnpeDAO {
 	}
 	
 	public Object getresumenGeneral() {
-		db.Sentencia( "usp_resumenGeneral");
+		db.Sentencia( "sp_getResumen_BaldeonArones");
 		return db.getRegistro();
 	}
 	
