@@ -29,4 +29,54 @@
     <servlet-name>svlActas</servlet-name>
     <url-pattern>/svlActas</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>svlActa</display-name>
+    <servlet-name>svlActa</servlet-name>
+    <servlet-class>svl.svlActa</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>svlActa</servlet-name>
+    <url-pattern>/svlActa</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>svlPresidencial</display-name>
+    <servlet-name>svlPresidencial</servlet-name>
+    <servlet-class>svl.svlPresidencial</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>svlPresidencial</servlet-name>
+    <url-pattern>/svlPresidencial</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>svlParticipacion1</display-name>
+    <servlet-name>svlParticipacion1</servlet-name>
+    <servlet-class>svl.svlParticipacion1</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>svlParticipacion1</servlet-name>
+    <url-pattern>/svlParticipacion1</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>svlResultados2</display-name>
+    <servlet-name>svlResultados2</servlet-name>
+    <servlet-class>svl.svlResultados2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>svlResultados2</servlet-name>
+    <url-pattern>/svlResultados2</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>svlResultados1</display-name>
+    <servlet-name>svlResultados1</servlet-name>
+    <servlet-class>svl.svlResultados1</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>svlResultados1</servlet-name>
+    <url-pattern>/svlResultados1</url-pattern>
+  </servlet-mapping>
 </web-app>

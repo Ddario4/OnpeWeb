@@ -10,15 +10,15 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
- * Servlet implementation class svlActa
+ * Servlet implementation class svlResultados1
  */
-public class svlActas extends HttpServlet {
+public class svlResultados1 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public svlActas() {
+    public svlResultados1() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,25 +26,22 @@ public class svlActas extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-
-	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=UTF-8");
+ protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	 response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		dao.OnpeDAO daoOnpe = new dao.OnpeDAO();
 		
 		String id = request.getParameter("id");
-		String nroMesa = request.getParameter("nroMesa");
+		
 		String idDepartamento = request.getParameter("cboDepartamento");
 		String idProvincia = request.getParameter("cboProvincia");
 		String idDistrito = request.getParameter("cboDistrito");
-		String idLocalVotacion = request.getParameter("cboLocalVotacion");
 		Object data = null;
 
 		if ( idDepartamento == null ) idDepartamento = "-1";
 		if ( idProvincia == null ) idProvincia = "-1";
 		if ( idDistrito == null ) idDistrito = "-1";
-		if ( idLocalVotacion == null ) idLocalVotacion = "-1";
 
 		if ( idDepartamento.equals("-1") )  {
 			idProvincia = "-1";
@@ -54,15 +51,10 @@ public class svlActas extends HttpServlet {
 			idDistrito = "-1";
 			session.setAttribute("distritos", null);
 		}
-		if ( idDistrito.equals("-1") ) {
-			idLocalVotacion = "-1";
-			session.setAttribute("locales", null);
-		}
-		if ( idLocalVotacion.equals("-1") ) 
-			session.setAttribute("mesas", null);
+	
 		
 		
-		if ( id == null && session.getAttribute("departamentos") == null )
+		if (  session.getAttribute("departamentos") == null )
 			session.setAttribute("departamentos", daoOnpe.getDepartamentos(1,25) );
 		
 		if ( !idDepartamento.equals( session.getAttribute("idDepartamento") ) ) {
@@ -78,28 +70,16 @@ public class svlActas extends HttpServlet {
 		}
 			
 		
-		if ( !idDistrito.equals( session.getAttribute("idDistrito") ) ) {
-			idLocalVotacion = "-1";
-			session.setAttribute("idDistrito", idDistrito);
-			session.setAttribute("locales", daoOnpe.getLocalesVotacion(idDistrito) );
-		}
 		
-		if ( !idLocalVotacion.equals( session.getAttribute("idLocalVotacion") ) )  {
-			session.setAttribute("idLocalVotacion", idLocalVotacion);
-			session.setAttribute("mesas", daoOnpe.getGruposVotacion(idLocalVotacion) );
-		}
 		
-		if ( nroMesa != null ) {
-			id = nroMesa;
-			data = daoOnpe.getGrupoVotacion(nroMesa);
-		}
 		
-		String sDPD = idDepartamento + "," + idProvincia + "," + idDistrito + "," + idLocalVotacion;
+		
+		String sDPD = idDepartamento + "," + idProvincia + "," + idDistrito + "," ;
 		session.setAttribute("id", id);
 		session.setAttribute("data", data);
 		session.setAttribute("dpd", sDPD);
 		
-		response.sendRedirect("actas.jsp");
+		response.sendRedirect("resultados1.jsp");
 	}
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -15,7 +15,7 @@
         
         <section class="container space02 nosub">
             <div class="pull-left pd02 ancho-ie">
-                <a href="presidenciales.jsp">
+                <a href="svlPresidencial">
                     <div class="grow pic btn01"><img src="images/presidenciales.jpg" ></div>
                     <div class="tit02"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span><p>PRESIDENCIALES</p></div>
                 </a>
